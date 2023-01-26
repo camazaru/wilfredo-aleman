@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../servicios/api/api.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-
 @Component({
   selector: 'app-editar',
   templateUrl: './editar.component.html',
@@ -57,7 +56,12 @@ getToken(){
   return localStorage.getItem('token')
 }
 
+postForm(Form:any){
+this.api.puttient(form).subscribe( data => {
+console.log(data)
+ })
 
+}
 
 
 }

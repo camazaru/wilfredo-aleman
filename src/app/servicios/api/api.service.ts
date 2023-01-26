@@ -31,5 +31,11 @@ getSinglePacient(id:any):Observable<any>{
   return this.http.get<any>(direccion)
 }
 
+puttient(form:any):Observable<any>{
+  let direccion = this.url + "pacientes"
+return this.http.put<any>(direccion, form)
+
+}
+
 
 }
