@@ -56,7 +56,7 @@ getToken(){
   return localStorage.getItem('token')
 }
 
-postForm(Form:any){
+postForm(form:any){
 this.api.puttient(form).subscribe( data => {
 console.log(data)
  })
