@@ -1,1 +1,40 @@
-<p>editar works!</p>
+<app-header></app-header>
+
+<div class="container">
+
+<form [formGroup]="editarForm">
+<div class="form-group">
+
+    <label for="exampleFormControlInput1">Nombre</label>
+<input type="text" class="form-control" placeholder="Nombre del paciente" formControlName="nombre">
+
+
+<label for="exampleFormControlInput1">Direccion</label>
+<input type="text" class="form-control" placeholder="Nombre del paciente" formControlName="direccion">
+
+<label for="exampleFormControlInput1">DNI</label>
+<input type="text" class="form-control" placeholder="Nombre del paciente" formControlName="dni">
+
+<label for="exampleFormControlInput1">Codigo Postal</label>
+<input type="text" class="form-control" placeholder="Nombre del paciente" formControlName="codigostal">
+
+<label for="exampleFormControlInput1">Telefono</label>
+<input type="text" class="form-control" placeholder="Nombre del paciente" formControlName="telefono">
+
+<label for="exampleFormControlInput1">Fecha Nacimiento</label>
+<input type="text" class="form-control" placeholder="Nombre del paciente" formControlName="fechaNacimiento">
+
+<label for="exampleFormControlInput1">Correo</label>
+<input type="text" class="form-control" placeholder="Nombre del paciente" formControlName="correo">
+
+<label for="exampleFormControlInput1">Genero</label>
+<input type="text" class="form-control" placeholder="Nombre del paciente" formControlName="genero">
+</div>
+
+</form>
+
+
+</div>
+
+
+<app-footer></app-footer>

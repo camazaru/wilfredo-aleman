@@ -21,14 +21,33 @@ loginForm = new FormGroup({
 
   constructor(private api:ApiService, private router:Router) { }
 
+errorStatus: boolean = false;
+errorMsj:any= "";
 
   ngOnInit(): void {
+this.checkLocalStogage()
   }
+
+checkLocalStogage(){
+  if(localStorage.getItem('token')){
+    this.router.navigate(['dashboard'])
+  }
+}
+
+
+
+
  
   onLogin(form: any){
     this.api.loginByEmail(form).subscribe(data => {
-      console.log(data)
-     
+      let dataResponse: ResponseI= data;
+     if(dataResponse.status == "ok") {
+       localStorage.setItem("token", dataResponse.result.token);
+       this.router.navigate(['dashboard'])
+     }else{
+       this.errorStatus=true;
+       this.errorMsj= dataResponse.result.error_msg
+     }
     },
     
     );

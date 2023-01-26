@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../servicios/api/api.service';
+import { Router } from '@angular/router';
+import { ListapacientesI } from '../../modelos/listapacientes.interface';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +11,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+pacientes:ListapacientesI[] | undefined;
+
+  constructor(private api: ApiService, private router:Router) { }
 
   ngOnInit(): void {
+this.api.getAllcients().subscribe(data => {
+  this.pacientes=data
+  
+})
+}
+
+
+editarPaciente(id: any){
+  this.router.navigate(['editar', id])
+
   }
 
+  nuevoPaciente(){
+    this.router.navigate(['nuevo'])
+  }
+
+
+
 }
+
