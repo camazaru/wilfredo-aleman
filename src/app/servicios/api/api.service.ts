@@ -6,6 +6,7 @@ import { Observable} from 'rxjs';
 import { ListapacientesI } from '../../modelos/listapacientes.interface'
 import { PacienteI } from '../../modelos/paciente.interface';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -35,6 +36,22 @@ puttient(form:any):Observable<any>{
   let direccion = this.url + "pacientes"
 return this.http.put<any>(direccion, form)
 
+}
+
+delete(form:any):Observable<any>{
+  let direccion = this.url + "pacientes"
+  let options = {
+headers: new HttpHeaders({
+'Content-type': 'application/json'
+}),
+body:form
+  }
+  return this.http.delete<any>(direccion, options)
+}
+
+postPatient(form:any):Observable<any>{
+  let direccion = this.url + "pacientes";
+  return this.http.post<any>(direccion, form)
 }
 
 

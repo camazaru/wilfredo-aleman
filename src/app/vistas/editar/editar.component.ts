@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../servicios/api/api.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AlertasService } from '../../servicios/alertas/alertas.service';
+
+
 
 @Component({
   selector: 'app-editar',
@@ -10,7 +13,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class EditarComponent implements OnInit {
 
-  constructor(private activerouter:ActivatedRoute, private router:Router, private api:ApiService) { }
+  constructor(private activerouter:ActivatedRoute, private router:Router, private api:ApiService, private alertas:AlertasService) { }
 
 datosPaciente: any;
 
@@ -24,7 +27,6 @@ genero: new FormControl(''),
 telefono: new FormControl(''),
 pacienteId: new FormControl(''),
 fechaNacimiento: new FormControl(''),
-
 })
 
   ngOnInit(): void {
@@ -34,8 +36,6 @@ let token = this.getToken();
 this.api.getSinglePacient(pacienteid).subscribe(data => {
 
 this.datosPaciente = data[0];
-
-console.log(this.datosPaciente)
 
 this.editarForm.setValue({
   'nombre': this.datosPaciente.Nombre,
@@ -57,11 +57,33 @@ getToken(){
 }
 
 postForm(form:any){
-this.api.puttient(form).subscribe( data => {
-console.log(data)
- })
+  this.api.puttient(form).subscribe(data => {
+let respuesta:any = data;
+if(respuesta.status == "ok"){
+  this.alertas.showSuccess('Datos modificados', 'Hecho')
+}else{
+  this.alertas.showError(respuesta.result.error_msg, 'Error' )
+}
+
+  })
 
 }
 
+eliminar(){
+  
+  this.api.delete(this.editarForm).subscribe(data => {
+    let respuesta:any = data;
+    if(respuesta.status == "ok"){
+      this.alertas.showSuccess('ciente eliminado', 'Hecho');
+      this.router.navigate(['dashboard'])
+    }else{
+      this.alertas.showError(respuesta.result.error_msg, 'Error' )
+    }
+  })
+}
+
+salir(){
+  this.router.navigate(['dashboard'])
+}
 
 }
