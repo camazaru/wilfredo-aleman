@@ -13,7 +13,8 @@ import { EditarComponent } from './vistas/editar/editar.component';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
-
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http'
     ReactiveFormsModule, 
     FormsModule,
     HttpClientModule,
-
+    ToastrModule,
+    BrowserAnimationsModule
 
     
   ],
